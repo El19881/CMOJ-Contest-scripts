@@ -1,0 +1,3 @@
+words = input()
+result = words.count(" ") + 1
+print(result)
