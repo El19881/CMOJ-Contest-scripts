@@ -1,28 +1,16 @@
-number = int(input())
-readings = input()
+n_numbers = int(input())
+#the below also works insted of lines 4-6:
+#list_numbers = list(map(int,input().split()))
+list_numbers = input()
+list_numbers = list_numbers.split(" ")
+list_numbers = [int(i) for i in list_numbers]
 
-readings_list = readings.split(" ")
-integers = [int(x) for x in readings_list]
+min, max = min(list_numbers), max(list_numbers)
+min_i, max_i = list_numbers.index(min), list_numbers.index(max)
 
-min = min(integers)
-max = max(integers)
+new_list = list_numbers[min_i:max_i+1]
 
-min_index = integers.index(min)
-max_index = integers.index(max)
-
-new_list = integers[min_index:max_index+1]
-result = []
-if min_index>max_index:
-    result.append(False)
-for i in range(len(new_list)):
-	if new_list[i] != new_list[-1] and new_list[i] < new_list[i+1]:
-		result.append(True)
-	elif new_list[i] == new_list[-1]:
-		result.append(True)
-	else:
-		result.append(False)
-
-if False in result:
+if new_list != sorted(new_list) or min_i>max_i:
 	print("unknown")
-else: 
+else:
 	print(max-min)
